@@ -1,0 +1,38 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+*.venv
+
+# Large model folders
+depression_bert/
+sentiment_bert/
+depression_bert_model/
+sentiment_bert_model/
+
+# HuggingFace / torch weights
+*.bin
+*.pt
+*.pth
+
+# Large datasets
+data/
+
+# Logs
+logs/
+*.log
+
+# Environment files
+.env
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Streamlit
+.streamlit/
