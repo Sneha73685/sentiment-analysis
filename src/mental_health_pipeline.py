@@ -1,6 +1,8 @@
 import torch
 import torch.nn.functional as F
+from src.mental_health_signals import detect_signals
 from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
+from src.text_preprocessing import correct_text
 
 device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
@@ -27,7 +29,8 @@ def compute_risk(sentiment, depression):
     return "low"
 
 def analyze_text(text):
-
+    text = correct_text(text)
+    signals = detect_signals(text)
     # SENTIMENT
     inputs_sent = sent_tokenizer(
         text,
@@ -75,8 +78,9 @@ def analyze_text(text):
         "mental_health": {
             "depression_risk": depression,
             "confidence": round(depression_conf, 4)
-        },
-        "risk_level": risk_level
+            },
+        "risk_level": risk_level,
+        "signals_detected": signals
     }
 
     return result
