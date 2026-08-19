@@ -1,0 +1,386 @@
+{
+  "git_commit": "d68b419e10ded167b87c99f3533c16b5209851d1",
+  "val_set_path": "results/splits/depression_val.csv",
+  "test_set_path": "results/splits/depression_test.csv",
+  "val_size": 1148,
+  "test_size": 1148,
+  "ece_n_bins": 10,
+  "bootstrap_n": 999,
+  "random_seed": 42,
+  "temperature_learned_on_val": 1.8148,
+  "accuracy_unchanged_by_temperature_scaling": true,
+  "classical": {
+    "val_diagnostic": {
+      "name": "classical_val_diagnostic",
+      "n": 1148,
+      "accuracy": 0.9486,
+      "log_loss": 0.2014,
+      "brier_score": 0.05,
+      "ece": 0.0982,
+      "mean_confidence_correct": 0.8663,
+      "mean_confidence_incorrect": 0.6471,
+      "n_correct": 1089,
+      "n_incorrect": 59,
+      "reliability_bins": [
+        {
+          "bin_low": 0.5,
+          "bin_high": 0.55,
+          "n": 28,
+          "avg_confidence": 0.5267,
+          "accuracy": 0.5
+        },
+        {
+          "bin_low": 0.55,
+          "bin_high": 0.6,
+          "n": 26,
+          "avg_confidence": 0.5744,
+          "accuracy": 0.5
+        },
+        {
+          "bin_low": 0.6,
+          "bin_high": 0.65,
+          "n": 37,
+          "avg_confidence": 0.6243,
+          "accuracy": 0.8649
+        },
+        {
+          "bin_low": 0.65,
+          "bin_high": 0.7,
+          "n": 51,
+          "avg_confidence": 0.6751,
+          "accuracy": 0.8039
+        },
+        {
+          "bin_low": 0.7,
+          "bin_high": 0.75,
+          "n": 63,
+          "avg_confidence": 0.7258,
+          "accuracy": 0.9206
+        },
+        {
+          "bin_low": 0.75,
+          "bin_high": 0.8,
+          "n": 103,
+          "avg_confidence": 0.7765,
+          "accuracy": 0.9417
+        },
+        {
+          "bin_low": 0.8,
+          "bin_high": 0.85,
+          "n": 121,
+          "avg_confidence": 0.8287,
+          "accuracy": 0.9835
+        },
+        {
+          "bin_low": 0.85,
+          "bin_high": 0.9,
+          "n": 217,
+          "avg_confidence": 0.8771,
+          "accuracy": 0.9908
+        },
+        {
+          "bin_low": 0.9,
+          "bin_high": 0.95,
+          "n": 237,
+          "avg_confidence": 0.9247,
+          "accuracy": 0.9916
+        },
+        {
+          "bin_low": 0.95,
+          "bin_high": 1.0,
+          "n": 265,
+          "avg_confidence": 0.9771,
+          "accuracy": 1.0
+        }
+      ]
+    },
+    "test": {
+      "name": "classical_test",
+      "n": 1148,
+      "accuracy": 0.9556,
+      "log_loss": 0.2001,
+      "brier_score": 0.0487,
+      "ece": 0.1033,
+      "mean_confidence_correct": 0.862,
+      "mean_confidence_incorrect": 0.6501,
+      "n_correct": 1097,
+      "n_incorrect": 51,
+      "reliability_bins": [
+        {
+          "bin_low": 0.5,
+          "bin_high": 0.55,
+          "n": 29,
+          "avg_confidence": 0.5245,
+          "accuracy": 0.5172
+        },
+        {
+          "bin_low": 0.55,
+          "bin_high": 0.6,
+          "n": 33,
+          "avg_confidence": 0.5772,
+          "accuracy": 0.7576
+        },
+        {
+          "bin_low": 0.6,
+          "bin_high": 0.65,
+          "n": 34,
+          "avg_confidence": 0.632,
+          "accuracy": 0.8529
+        },
+        {
+          "bin_low": 0.65,
+          "bin_high": 0.7,
+          "n": 53,
+          "avg_confidence": 0.6765,
+          "accuracy": 0.8491
+        },
+        {
+          "bin_low": 0.7,
+          "bin_high": 0.75,
+          "n": 51,
+          "avg_confidence": 0.7287,
+          "accuracy": 0.9412
+        },
+        {
+          "bin_low": 0.75,
+          "bin_high": 0.8,
+          "n": 94,
+          "avg_confidence": 0.7769,
+          "accuracy": 0.9149
+        },
+        {
+          "bin_low": 0.8,
+          "bin_high": 0.85,
+          "n": 144,
+          "avg_confidence": 0.8268,
+          "accuracy": 0.9861
+        },
+        {
+          "bin_low": 0.85,
+          "bin_high": 0.9,
+          "n": 227,
+          "avg_confidence": 0.8772,
+          "accuracy": 0.9956
+        },
+        {
+          "bin_low": 0.9,
+          "bin_high": 0.95,
+          "n": 250,
+          "avg_confidence": 0.9237,
+          "accuracy": 0.992
+        },
+        {
+          "bin_low": 0.95,
+          "bin_high": 1.0,
+          "n": 233,
+          "avg_confidence": 0.9782,
+          "accuracy": 1.0
+        }
+      ],
+      "ece_ci95": [
+        0.0943,
+        0.1156
+      ],
+      "brier_ci95": [
+        0.0431,
+        0.0546
+      ]
+    },
+    "calibration_recommendation": {
+      "val_ece": 0.0982,
+      "val_brier": 0.05,
+      "test_ece": 0.1033,
+      "test_brier": 0.0487,
+      "assessment": "some miscalibration observed -- consider Platt scaling / isotonic regression fit on val in a future phase (NOT applied here per instructions)",
+      "calibration_applied": false
+    }
+  },
+  "bert": {
+    "raw_test": {
+      "name": "bert_raw_test",
+      "n": 1148,
+      "accuracy": 0.9843,
+      "log_loss": 0.0796,
+      "brier_score": 0.0143,
+      "ece": 0.0149,
+      "mean_confidence_correct": 0.998,
+      "mean_confidence_incorrect": 0.935,
+      "n_correct": 1130,
+      "n_incorrect": 18,
+      "reliability_bins": [
+        {
+          "bin_low": 0.5,
+          "bin_high": 0.55,
+          "n": 1,
+          "avg_confidence": 0.539,
+          "accuracy": 1.0
+        },
+        {
+          "bin_low": 0.55,
+          "bin_high": 0.6,
+          "n": 2,
+          "avg_confidence": 0.5864,
+          "accuracy": 0.0
+        },
+        {
+          "bin_low": 0.6,
+          "bin_high": 0.65,
+          "n": 0,
+          "avg_confidence": null,
+          "accuracy": null
+        },
+        {
+          "bin_low": 0.65,
+          "bin_high": 0.7,
+          "n": 0,
+          "avg_confidence": null,
+          "accuracy": null
+        },
+        {
+          "bin_low": 0.7,
+          "bin_high": 0.75,
+          "n": 0,
+          "avg_confidence": null,
+          "accuracy": null
+        },
+        {
+          "bin_low": 0.75,
+          "bin_high": 0.8,
+          "n": 2,
+          "avg_confidence": 0.7804,
+          "accuracy": 1.0
+        },
+        {
+          "bin_low": 0.8,
+          "bin_high": 0.85,
+          "n": 2,
+          "avg_confidence": 0.822,
+          "accuracy": 1.0
+        },
+        {
+          "bin_low": 0.85,
+          "bin_high": 0.9,
+          "n": 3,
+          "avg_confidence": 0.8699,
+          "accuracy": 0.3333
+        },
+        {
+          "bin_low": 0.9,
+          "bin_high": 0.95,
+          "n": 0,
+          "avg_confidence": null,
+          "accuracy": null
+        },
+        {
+          "bin_low": 0.95,
+          "bin_high": 1.0,
+          "n": 1138,
+          "avg_confidence": 0.9992,
+          "accuracy": 0.9877
+        }
+      ],
+      "ece_ci95": [
+        0.0083,
+        0.022
+      ],
+      "brier_ci95": [
+        0.0081,
+        0.0212
+      ]
+    },
+    "calibrated_test": {
+      "name": "bert_calibrated_test",
+      "n": 1148,
+      "accuracy": 0.9843,
+      "log_loss": 0.0605,
+      "brier_score": 0.0136,
+      "ece": 0.0108,
+      "mean_confidence_correct": 0.9839,
+      "mean_confidence_incorrect": 0.8861,
+      "n_correct": 1130,
+      "n_incorrect": 18,
+      "reliability_bins": [
+        {
+          "bin_low": 0.5,
+          "bin_high": 0.55,
+          "n": 3,
+          "avg_confidence": 0.5391,
+          "accuracy": 0.3333
+        },
+        {
+          "bin_low": 0.55,
+          "bin_high": 0.6,
+          "n": 0,
+          "avg_confidence": null,
+          "accuracy": null
+        },
+        {
+          "bin_low": 0.6,
+          "bin_high": 0.65,
+          "n": 0,
+          "avg_confidence": null,
+          "accuracy": null
+        },
+        {
+          "bin_low": 0.65,
+          "bin_high": 0.7,
+          "n": 3,
+          "avg_confidence": 0.6728,
+          "accuracy": 1.0
+        },
+        {
+          "bin_low": 0.7,
+          "bin_high": 0.75,
+          "n": 3,
+          "avg_confidence": 0.7287,
+          "accuracy": 0.3333
+        },
+        {
+          "bin_low": 0.75,
+          "bin_high": 0.8,
+          "n": 1,
+          "avg_confidence": 0.7521,
+          "accuracy": 1.0
+        },
+        {
+          "bin_low": 0.8,
+          "bin_high": 0.8500000000000001,
+          "n": 0,
+          "avg_confidence": null,
+          "accuracy": null
+        },
+        {
+          "bin_low": 0.85,
+          "bin_high": 0.9,
+          "n": 5,
+          "avg_confidence": 0.8773,
+          "accuracy": 1.0
+        },
+        {
+          "bin_low": 0.9,
+          "bin_high": 0.95,
+          "n": 24,
+          "avg_confidence": 0.9287,
+          "accuracy": 0.7917
+        },
+        {
+          "bin_low": 0.95,
+          "bin_high": 1.0,
+          "n": 1109,
+          "avg_confidence": 0.987,
+          "accuracy": 0.9919
+        }
+      ],
+      "ece_ci95": [
+        0.0056,
+        0.0174
+      ],
+      "brier_ci95": [
+        0.0079,
+        0.02
+      ],
+      "temperature": 1.8148
+    }
+  },
+  "disclaimer": "All 'confidence' values in this analysis are raw model predictive probabilities (softmax / logistic outputs), not calibrated estimates of clinical risk or true probability of depression. They describe how confident the MODEL is in its own prediction, nothing more."
+}

@@ -1,0 +1,48 @@
+{
+  "model": "classical",
+  "test_set": "results/splits/depression_test.csv",
+  "test_set_size": 1148,
+  "warning": "WARNING: depression_model.pkl / depression_bert_model were trained before this test split existed and were not constrained to exclude it. These metrics verify the evaluation pipeline only -- they are not a valid final result until the models are retrained on results/splits/depression_train.csv (+ val).",
+  "accuracy": 0.9703832752613241,
+  "precision": 0.9871323529411765,
+  "recall": 0.9521276595744681,
+  "f1_score": 0.9693140794223827,
+  "roc_auc": 0.995121077431264,
+  "confusion_matrix": [
+    [
+      577,
+      7
+    ],
+    [
+      27,
+      537
+    ]
+  ],
+  "per_class": {
+    "0": {
+      "precision": 0.9552980132450332,
+      "recall": 0.988013698630137,
+      "f1-score": 0.9713804713804713,
+      "support": 584.0
+    },
+    "1": {
+      "precision": 0.9871323529411765,
+      "recall": 0.9521276595744681,
+      "f1-score": 0.9693140794223827,
+      "support": 564.0
+    },
+    "accuracy": 0.9703832752613241,
+    "macro avg": {
+      "precision": 0.9712151830931048,
+      "recall": 0.9700706791023026,
+      "f1-score": 0.9703472754014271,
+      "support": 1148.0
+    },
+    "weighted avg": {
+      "precision": 0.9709378804825112,
+      "recall": 0.9703832752613241,
+      "f1-score": 0.9703652753313756,
+      "support": 1148.0
+    }
+  }
+}

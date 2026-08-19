@@ -1,0 +1,13 @@
+text,true_label,pred_classical,prob_classical,pred_bert,prob_bert,conf_classical,conf_bert,correct_classical,correct_bert,word_count
+mistystilletto if it had happened to anyone else i would have peed myself laughing i scraped my leg,0,1,0.5163023223092631,0,0.0007983358809724,0.5163023223092631,0.9992016641190276,False,True,18
+want her step brother home im so worried you dont even know i hope he know how much i care for him,0,1,0.7731274350906895,0,0.0155424671247601,0.7731274350906895,0.9844575328752398,False,True,22
+kevchoice i just don t get it what in a person mind could even have them on some ish like this my prayer are with her fam for real,0,1,0.5843240874467273,0,0.0010791083332151,0.5843240874467273,0.9989208916667849,False,True,29
+joshsharp no money yet i dont know anyone who ha maybe it all just a lie he having u on so we all like him a little bit more lol,0,1,0.5295208542659855,0,0.0006671847659163,0.5295208542659855,0.9993328152340837,False,True,30
+vanidosa what s wrong why do you need an inhaler i didn t even know you were sick hope you start feeling better,0,1,0.5078471207672725,0,0.0016590545419603,0.5078471207672725,0.9983409454580398,False,True,23
+i know my life ha been flipped upside down when i just thought in my head that some ramen sound good,0,1,0.6336201131973246,0,0.0011918338714167,0.6336201131973246,0.9988081661285833,False,True,21
+horror wench me toooooo i feel like i ve been on the verge of an anxiety attack all day,0,1,0.7594366281083358,0,0.0026124787982553,0.7594366281083358,0.9973875212017447,False,True,19
+stupid year project feel like you ve conquered something then you realised it s only year down,0,1,0.5803701805575595,0,0.001003464218229,0.5803701805575595,0.998996535781771,False,True,17
+my stress always culminates with physical pain,0,1,0.5282328273189215,1,0.9996155500411988,0.5282328273189215,0.9996155500411988,False,False,7
+these day i don t feel like twittering don t know why,0,1,0.9027800186819478,0,0.0012543508782982,0.9027800186819478,0.9987456491217018,False,True,12
+djalizay i really don t think people choose to be that way but i think he chose not to accept my family s help he might be dead by now,0,1,0.7217279452829042,0,0.0019480796763673,0.7217279452829042,0.9980519203236327,False,True,30
+mrskutcher i wa just thinking that today how deprssing it all is make u appreciate life more,0,1,0.5851384786040231,0,0.0006529639940708,0.5851384786040231,0.9993470360059292,False,True,17

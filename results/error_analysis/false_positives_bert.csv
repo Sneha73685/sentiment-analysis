@@ -1,0 +1,3 @@
+text,true_label,pred_classical,prob_classical,pred_bert,prob_bert,conf_classical,conf_bert,correct_classical,correct_bert,word_count
+this week just seems to get longer and longer in term of how much i need to do and how much i m actually going to get done,0,0,0.4855845880474924,1,0.9827901124954224,0.5144154119525076,0.9827901124954224,True,False,28
+my stress always culminates with physical pain,0,1,0.5282328273189215,1,0.9996155500411988,0.5282328273189215,0.9996155500411988,False,False,7

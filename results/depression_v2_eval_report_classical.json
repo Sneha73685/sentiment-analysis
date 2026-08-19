@@ -1,0 +1,83 @@
+{
+  "model": "classical",
+  "model_dir": "depression_model_v2",
+  "test_set_path": "results/splits/depression_test.csv",
+  "test_set_size": 1148,
+  "split_manifest": {
+    "source_file": "data/depression_dataset.csv",
+    "random_seed": 42,
+    "raw_row_count": 7731,
+    "duplicates_removed": 81,
+    "deduped_row_count": 7650,
+    "split_fractions": {
+      "train": 0.7,
+      "val": 0.15,
+      "test": 0.15
+    },
+    "split_counts": {
+      "train": 5354,
+      "val": 1148,
+      "test": 1148
+    },
+    "class_balance": {
+      "train": {
+        "0": 2721,
+        "1": 2633
+      },
+      "val": {
+        "0": 584,
+        "1": 564
+      },
+      "test": {
+        "0": 584,
+        "1": 564
+      }
+    },
+    "no_overlap_verified": true,
+    "notes": "This split governs all FUTURE training/evaluation of the depression models. depression_model.pkl and depression_bert_model/ were trained BEFORE this split existed and were not constrained to exclude these test rows. Metrics computed against those already-trained models are NOT a valid final generalization estimate -- they only verify that the evaluation pipeline itself is correct. Valid final numbers require retraining both models using depression_train.csv / depression_val.csv only, in a future phase."
+  },
+  "evaluation_timestamp_utc": "2026-08-19T15:20:50.545438+00:00",
+  "git_commit": "d68b419e10ded167b87c99f3533c16b5209851d1",
+  "accuracy": 0.955574912891986,
+  "precision": 0.9776536312849162,
+  "recall": 0.9308510638297872,
+  "f1_score": 0.9536784741144414,
+  "roc_auc": 0.9899673928883708,
+  "confusion_matrix": [
+    [
+      572,
+      12
+    ],
+    [
+      39,
+      525
+    ]
+  ],
+  "per_class": {
+    "0": {
+      "precision": 0.9361702127659575,
+      "recall": 0.9794520547945206,
+      "f1-score": 0.9573221757322176,
+      "support": 584.0
+    },
+    "1": {
+      "precision": 0.9776536312849162,
+      "recall": 0.9308510638297872,
+      "f1-score": 0.9536784741144414,
+      "support": 564.0
+    },
+    "accuracy": 0.955574912891986,
+    "macro avg": {
+      "precision": 0.9569119220254368,
+      "recall": 0.9551515593121539,
+      "f1-score": 0.9555003249233295,
+      "support": 1148.0
+    },
+    "weighted avg": {
+      "precision": 0.9565505682055853,
+      "recall": 0.955574912891986,
+      "f1-score": 0.9555320644844599,
+      "support": 1148.0
+    }
+  }
+}

@@ -1,0 +1,503 @@
+{
+  "test_set_size": 1148,
+  "config": {
+    "low_confidence_threshold": 0.65,
+    "strong_disagreement_threshold": 0.85,
+    "random_seed": 42
+  },
+  "overall": {
+    "classical_accuracy": 0.9556,
+    "bert_accuracy": 0.9843,
+    "classical_errors": 51,
+    "bert_errors": 18
+  },
+  "category_summary": [
+    {
+      "category": "classical_false_positives",
+      "n": 12,
+      "proportion_of_test_set": 0.0105,
+      "conf_classical_mean": 0.6352,
+      "conf_classical_median": 0.5847,
+      "conf_bert_mean": 0.9976,
+      "conf_bert_median": 0.9989
+    },
+    {
+      "category": "classical_false_negatives",
+      "n": 39,
+      "proportion_of_test_set": 0.034,
+      "conf_classical_mean": 0.6547,
+      "conf_classical_median": 0.6552,
+      "conf_bert_mean": 0.9629,
+      "conf_bert_median": 0.9991
+    },
+    {
+      "category": "bert_false_positives",
+      "n": 2,
+      "proportion_of_test_set": 0.0017,
+      "conf_classical_mean": 0.5213,
+      "conf_classical_median": 0.5213,
+      "conf_bert_mean": 0.9912,
+      "conf_bert_median": 0.9912
+    },
+    {
+      "category": "bert_false_negatives",
+      "n": 16,
+      "proportion_of_test_set": 0.0139,
+      "conf_classical_mean": 0.7264,
+      "conf_classical_median": 0.7575,
+      "conf_bert_mean": 0.928,
+      "conf_bert_median": 0.9953
+    },
+    {
+      "category": "classical_wrong_bert_correct",
+      "n": 36,
+      "proportion_of_test_set": 0.0314,
+      "conf_classical_mean": 0.6237,
+      "conf_classical_median": 0.5963,
+      "conf_bert_mean": 0.9909,
+      "conf_bert_median": 0.9993
+    },
+    {
+      "category": "bert_wrong_classical_correct",
+      "n": 3,
+      "proportion_of_test_set": 0.0026,
+      "conf_classical_mean": 0.6547,
+      "conf_classical_median": 0.658,
+      "conf_bert_mean": 0.9929,
+      "conf_bert_median": 0.9975
+    },
+    {
+      "category": "both_wrong",
+      "n": 15,
+      "proportion_of_test_set": 0.0131,
+      "conf_classical_mean": 0.7134,
+      "conf_classical_median": 0.7544,
+      "conf_bert_mean": 0.9235,
+      "conf_bert_median": 0.9945
+    },
+    {
+      "category": "both_correct_low_confidence",
+      "n": 69,
+      "proportion_of_test_set": 0.0601,
+      "conf_classical_mean": 0.593,
+      "conf_classical_median": 0.5894,
+      "conf_bert_mean": 0.9858,
+      "conf_bert_median": 0.9995
+    },
+    {
+      "category": "strong_disagreement",
+      "n": 1,
+      "proportion_of_test_set": 0.0009,
+      "conf_classical_mean": 0.9028,
+      "conf_classical_median": 0.9028,
+      "conf_bert_mean": 0.9987,
+      "conf_bert_median": 0.9987
+    },
+    {
+      "category": "model_disagreements",
+      "n": 39,
+      "proportion_of_test_set": 0.034,
+      "conf_classical_mean": 0.6261,
+      "conf_classical_median": 0.5991,
+      "conf_bert_mean": 0.9911,
+      "conf_bert_median": 0.9992
+    }
+  ],
+  "linguistic_analysis_metadata": {
+    "n_tests": 20,
+    "bonferroni_alpha": 0.0025,
+    "word_count_q10": 6.0,
+    "word_count_q90": 200.19999999999982
+  },
+  "representative_examples": {
+    "classical_false_positives": [
+      {
+        "text_snippet": "djalizay i really don t think people choose to be that way but i think he chose not to accept my family s help he might be dead by now",
+        "true_label": "not_depressed",
+        "pred_classical": "depressed",
+        "conf_classical": 0.7217,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9981,
+        "word_count": 30
+      },
+      {
+        "text_snippet": "these day i don t feel like twittering don t know why",
+        "true_label": "not_depressed",
+        "pred_classical": "depressed",
+        "conf_classical": 0.9028,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9987,
+        "word_count": 12
+      },
+      {
+        "text_snippet": "mistystilletto if it had happened to anyone else i would have peed myself laughing i scraped my leg",
+        "true_label": "not_depressed",
+        "pred_classical": "depressed",
+        "conf_classical": 0.5163,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9992,
+        "word_count": 18
+      },
+      {
+        "text_snippet": "my stress always culminates with physical pain",
+        "true_label": "not_depressed",
+        "pred_classical": "depressed",
+        "conf_classical": 0.5282,
+        "pred_bert": "depressed",
+        "conf_bert": 0.9996,
+        "word_count": 7
+      },
+      {
+        "text_snippet": "i know my life ha been flipped upside down when i just thought in my head that some ramen sound good",
+        "true_label": "not_depressed",
+        "pred_classical": "depressed",
+        "conf_classical": 0.6336,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9988,
+        "word_count": 21
+      }
+    ],
+    "classical_false_negatives": [
+      {
+        "text_snippet": "i ve given up",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.8367,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.8694,
+        "word_count": 4
+      },
+      {
+        "text_snippet": "simple holding gun to head purposely overdosing and ending up in the hospital more complex standing in the kitchen holding a knife searching the house for anti nausea pill to keep down the rest of the...",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.5469,
+        "pred_bert": "depressed",
+        "conf_bert": 0.9999,
+        "word_count": 66
+      },
+      {
+        "text_snippet": "life is so fucked human are so fucked and cruel and hedonistic and trash and mean and disgusting humanity deserves to die out a a specie so this planet and the animal that get constantly fucked by u c...",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.5224,
+        "pred_bert": "depressed",
+        "conf_bert": 0.9999,
+        "word_count": 43
+      },
+      {
+        "text_snippet": "i think i ll try tonight i ll go on a late night walk and accidentally trip in front of a car that way if i fail i won t have to deal with all the shit",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.7669,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9911,
+        "word_count": 37
+      },
+      {
+        "text_snippet": "i m so tired of the pain hating myself and having no future i cant do this anymore",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.5708,
+        "pred_bert": "depressed",
+        "conf_bert": 0.9988,
+        "word_count": 18
+      }
+    ],
+    "bert_false_positives": [
+      {
+        "text_snippet": "my stress always culminates with physical pain",
+        "true_label": "not_depressed",
+        "pred_classical": "depressed",
+        "conf_classical": 0.5282,
+        "pred_bert": "depressed",
+        "conf_bert": 0.9996,
+        "word_count": 7
+      },
+      {
+        "text_snippet": "this week just seems to get longer and longer in term of how much i need to do and how much i m actually going to get done",
+        "true_label": "not_depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.5144,
+        "pred_bert": "depressed",
+        "conf_bert": 0.9828,
+        "word_count": 28
+      }
+    ],
+    "bert_false_negatives": [
+      {
+        "text_snippet": "fuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuck",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.8909,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9845,
+        "word_count": 1
+      },
+      {
+        "text_snippet": "anybody just let me know i m here to listen and meet new people",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.624,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.5834,
+        "word_count": 14
+      },
+      {
+        "text_snippet": "just a motivational quote",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.9011,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9913,
+        "word_count": 4
+      },
+      {
+        "text_snippet": "i ve given up",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.8367,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.8694,
+        "word_count": 4
+      },
+      {
+        "text_snippet": "i feel a since covid hit my life turned upside down almost nothing brings joy anymore and nothing is interesting",
+        "true_label": "depressed",
+        "pred_classical": "depressed",
+        "conf_classical": 0.7918,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9984,
+        "word_count": 20
+      }
+    ],
+    "classical_wrong_bert_correct": [
+      {
+        "text_snippet": "it could be something you saw you heard you did anything go it may not be good enough for you but i still wan na hear it so please please share",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.5683,
+        "pred_bert": "depressed",
+        "conf_bert": 0.999,
+        "word_count": 31
+      },
+      {
+        "text_snippet": "kevchoice i just don t get it what in a person mind could even have them on some ish like this my prayer are with her fam for real",
+        "true_label": "not_depressed",
+        "pred_classical": "depressed",
+        "conf_classical": 0.5843,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9989,
+        "word_count": 29
+      },
+      {
+        "text_snippet": "i m so tired of the pain hating myself and having no future i cant do this anymore",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.5708,
+        "pred_bert": "depressed",
+        "conf_bert": 0.9988,
+        "word_count": 18
+      },
+      {
+        "text_snippet": "i just wish i didn t have people and pet that wouldn t be bothered without me i have all the general visible asset of my gender identity but i still know i ll never be a girl",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.7113,
+        "pred_bert": "depressed",
+        "conf_bert": 0.9991,
+        "word_count": 38
+      },
+      {
+        "text_snippet": "i try and try but i just can t do it",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.7742,
+        "pred_bert": "depressed",
+        "conf_bert": 0.993,
+        "word_count": 11
+      }
+    ],
+    "bert_wrong_classical_correct": [
+      {
+        "text_snippet": "this week just seems to get longer and longer in term of how much i need to do and how much i m actually going to get done",
+        "true_label": "not_depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.5144,
+        "pred_bert": "depressed",
+        "conf_bert": 0.9828,
+        "word_count": 28
+      },
+      {
+        "text_snippet": "i really need to fcking end it i can t take it anymore here",
+        "true_label": "depressed",
+        "pred_classical": "depressed",
+        "conf_classical": 0.658,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9975,
+        "word_count": 14
+      },
+      {
+        "text_snippet": "i feel a since covid hit my life turned upside down almost nothing brings joy anymore and nothing is interesting",
+        "true_label": "depressed",
+        "pred_classical": "depressed",
+        "conf_classical": 0.7918,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9984,
+        "word_count": 20
+      }
+    ],
+    "both_wrong": [
+      {
+        "text_snippet": "anybody 0 year old and up in south florida that want to talk",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.5273,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9991,
+        "word_count": 13
+      },
+      {
+        "text_snippet": "i try to play video game but just quit immediately and the same thing happens with my guitar i just can t do either one",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.7544,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.5893,
+        "word_count": 25
+      },
+      {
+        "text_snippet": "fuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuck",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.8909,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9845,
+        "word_count": 1
+      },
+      {
+        "text_snippet": "i ve given up",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.8367,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.8694,
+        "word_count": 4
+      },
+      {
+        "text_snippet": "just a motivational quote",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.9011,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9913,
+        "word_count": 4
+      }
+    ],
+    "both_correct_low_confidence": [
+      {
+        "text_snippet": "my condolence to natasha richardson s family",
+        "true_label": "not_depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.6431,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9977,
+        "word_count": 7
+      },
+      {
+        "text_snippet": "fuck everything i m done",
+        "true_label": "depressed",
+        "pred_classical": "depressed",
+        "conf_classical": 0.5601,
+        "pred_bert": "depressed",
+        "conf_bert": 0.9891,
+        "word_count": 5
+      },
+      {
+        "text_snippet": "not anymore how doe daisy manage to take up of the bed",
+        "true_label": "not_depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.5588,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9994,
+        "word_count": 12
+      },
+      {
+        "text_snippet": "twxtd jordan i wish i could i have to keep my door open for other people that may need me",
+        "true_label": "not_depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.6205,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9992,
+        "word_count": 20
+      },
+      {
+        "text_snippet": "kcarruthers i m only 0 year old in pixie year",
+        "true_label": "not_depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.5666,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9995,
+        "word_count": 10
+      }
+    ],
+    "strong_disagreement": [
+      {
+        "text_snippet": "these day i don t feel like twittering don t know why",
+        "true_label": "not_depressed",
+        "pred_classical": "depressed",
+        "conf_classical": 0.9028,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9987,
+        "word_count": 12
+      }
+    ],
+    "model_disagreements": [
+      {
+        "text_snippet": "i just wish i didn t have people and pet that wouldn t be bothered without me i have all the general visible asset of my gender identity but i still know i ll never be a girl",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.7113,
+        "pred_bert": "depressed",
+        "conf_bert": 0.9991,
+        "word_count": 38
+      },
+      {
+        "text_snippet": "simple holding gun to head purposely overdosing and ending up in the hospital more complex standing in the kitchen holding a knife searching the house for anti nausea pill to keep down the rest of the...",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.5469,
+        "pred_bert": "depressed",
+        "conf_bert": 0.9999,
+        "word_count": 66
+      },
+      {
+        "text_snippet": "lately all i basically is sleep i just don t have the energy for anything else these day i wa told i need more intensive treatment but i just don t have the energy for that a sad a that sound lmao i j...",
+        "true_label": "depressed",
+        "pred_classical": "not_depressed",
+        "conf_classical": 0.5155,
+        "pred_bert": "depressed",
+        "conf_bert": 0.9999,
+        "word_count": 48
+      },
+      {
+        "text_snippet": "want her step brother home im so worried you dont even know i hope he know how much i care for him",
+        "true_label": "not_depressed",
+        "pred_classical": "depressed",
+        "conf_classical": 0.7731,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9845,
+        "word_count": 22
+      },
+      {
+        "text_snippet": "i feel a since covid hit my life turned upside down almost nothing brings joy anymore and nothing is interesting",
+        "true_label": "depressed",
+        "pred_classical": "depressed",
+        "conf_classical": 0.7918,
+        "pred_bert": "not_depressed",
+        "conf_bert": 0.9984,
+        "word_count": 20
+      }
+    ]
+  }
+}

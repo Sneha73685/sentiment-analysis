@@ -1,0 +1,4 @@
+text,true_label,pred_classical,prob_classical,pred_bert,prob_bert,conf_classical,conf_bert,correct_classical,correct_bert,word_count
+this week just seems to get longer and longer in term of how much i need to do and how much i m actually going to get done,0,0,0.4855845880474924,1,0.9827901124954224,0.5144154119525076,0.9827901124954224,True,False,28
+i really need to fcking end it i can t take it anymore here,1,1,0.6579762142429995,0,0.0024587537627667,0.6579762142429995,0.9975412462372333,True,False,14
+i feel a since covid hit my life turned upside down almost nothing brings joy anymore and nothing is interesting,1,1,0.7917718416941673,0,0.0015974501147866,0.7917718416941673,0.9984025498852134,True,False,20

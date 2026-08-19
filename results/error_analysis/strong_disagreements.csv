@@ -1,0 +1,2 @@
+text,true_label,pred_classical,prob_classical,pred_bert,prob_bert,conf_classical,conf_bert,correct_classical,correct_bert,word_count
+these day i don t feel like twittering don t know why,0,1,0.9027800186819478,0,0.0012543508782982,0.9027800186819478,0.9987456491217018,False,True,12

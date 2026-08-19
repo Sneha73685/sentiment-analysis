@@ -1,0 +1,21 @@
+pattern,model,n_flagged,proportion_flagged,error_rate_flagged,error_rate_unflagged,odds_ratio,p_value,significant_at_0.05,significant_after_bonferroni,validity_note
+negation,classical,388,0.338,0.0335,0.05,0.6587,0.227536,False,False,Reliable surface-form detection (word-boundary regex on standard negation cues).
+negation,bert,388,0.338,0.0077,0.0197,0.387,0.139089,False,False,Reliable surface-form detection (word-boundary regex on standard negation cues).
+uncertainty,classical,153,0.1333,0.0261,0.0472,0.5415,0.295784,False,False,Reasonable surface-form proxy for hedging language.
+uncertainty,bert,153,0.1333,0.0065,0.0171,0.3785,0.494803,False,False,Reasonable surface-form proxy for hedging language.
+third_person_dominant,classical,50,0.0436,0.04,0.0446,0.892,1.0,False,False,Weak proxy: flags absence of first-person pronouns + presence of third-person pronouns/kinship terms. Does not capture true grammatical person/perspective.
+third_person_dominant,bert,50,0.0436,0.0,0.0164,0.0,1.0,False,False,Weak proxy: flags absence of first-person pronouns + presence of third-person pronouns/kinship terms. Does not capture true grammatical person/perspective.
+temporary_affect_language,classical,2,0.0017,0.0,0.0445,0.0,1.0,False,False,Weak proxy: co-occurrence of a temporal marker and a fatigue/sadness word within ~40 characters. Does not verify semantic relationship.
+temporary_affect_language,bert,2,0.0017,0.0,0.0157,0.0,1.0,False,False,Weak proxy: co-occurrence of a temporal marker and a fatigue/sadness word within ~40 characters. Does not verify semantic relationship.
+mixed_sentiment_language,classical,92,0.0801,0.0,0.0483,0.0,0.029389,True,False,Weak proxy for ambiguous/mixed emotional language: co-occurrence of a positive and negative sentiment word anywhere in the text.
+mixed_sentiment_language,bert,92,0.0801,0.0,0.017,0.0,0.389299,False,False,Weak proxy for ambiguous/mixed emotional language: co-occurrence of a positive and negative sentiment word anywhere in the text.
+contextual_depression_mention_without_self_report,classical,218,0.1899,0.0092,0.0527,0.1665,0.00288,True,False,Moderate proxy: flags mentions of 'depression'/'depressed' not immediately preceded by a first-person self-report frame. Will misclassify some genuine self-reports phrased unusually.
+contextual_depression_mention_without_self_report,bert,218,0.1899,0.0,0.0194,0.0,0.033205,True,False,Moderate proxy: flags mentions of 'depression'/'depressed' not immediately preceded by a first-person self-report frame. Will misclassify some genuine self-reports phrased unusually.
+sarcasm_markers,classical,2,0.0017,0.0,0.0445,0.0,1.0,False,False,"Very weak proxy: a handful of explicit sarcasm cues (e.g. '/s'). Almost certainly low recall -- most sarcasm in this corpus, if any, will NOT be flagged. A null result here is not evidence against sarcasm-related errors, only evidence against these specific surface markers."
+sarcasm_markers,bert,2,0.0017,0.0,0.0157,0.0,1.0,False,False,"Very weak proxy: a handful of explicit sarcasm cues (e.g. '/s'). Almost certainly low recall -- most sarcasm in this corpus, if any, will NOT be flagged. A null result here is not evidence against sarcasm-related errors, only evidence against these specific surface markers."
+metaphorical_language,classical,6,0.0052,0.0,0.0447,0.0,1.0,False,False,Very weak proxy: a small fixed list of metaphor phrases common in mental-health text. Low recall by construction.
+metaphorical_language,bert,6,0.0052,0.0,0.0158,0.0,1.0,False,False,Very weak proxy: a small fixed list of metaphor phrases common in mental-health text. Low recall by construction.
+very_short_input,classical,130,0.1132,0.0538,0.0432,1.2598,0.503987,False,False,"Reliable, purely quantitative (word count <= data-derived 10th percentile)."
+very_short_input,bert,130,0.1132,0.0308,0.0138,2.2766,0.137117,False,False,"Reliable, purely quantitative (word count <= data-derived 10th percentile)."
+long_context_heavy_input,classical,115,0.1002,0.0,0.0494,0.0,0.007145,True,False,"Reliable, purely quantitative (word count >= data-derived 90th percentile)."
+long_context_heavy_input,bert,115,0.1002,0.0,0.0174,0.0,0.244428,False,False,"Reliable, purely quantitative (word count >= data-derived 90th percentile)."
