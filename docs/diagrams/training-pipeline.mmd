@@ -1,0 +1,31 @@
+flowchart TD
+    TRAIN["Canonical Train Split<br/>results/splits/depression_train.csv<br/>5354 rows"]
+
+    TRAIN --> CPRE["Classical preprocessing<br/>src.preprocess.clean_text"]
+    TRAIN --> BTOK["BERT tokenizer<br/>DistilBertTokenizerFast<br/>raw text, max_length=256"]
+
+    CPRE --> TFIDF["TF-IDF<br/>max_features=5000"]
+    BTOK --> DISTIL["distilbert-base-uncased<br/>fine-tuning<br/>lr=2e-05, batch=4, grad_accum=2,<br/>weight_decay=0.01, epochs<=4"]
+
+    TFIDF --> LOGREG["LogisticRegression<br/>max_iter=1000, class_weight=balanced"]
+    DISTIL --> BERTFIT["Fine-tuned checkpoint per epoch"]
+
+    VAL["Validation Split<br/>results/splits/depression_val.csv<br/>1148 rows"]
+
+    LOGREG --> CSELECT["Diagnostic evaluation<br/>(no hyperparameter search to select over)"]
+    VAL --> CSELECT
+
+    BERTFIT --> BSELECT["Model selection / early stopping<br/>metric = validation accuracy<br/>patience = 1<br/>load_best_model_at_end = true"]
+    VAL --> BSELECT
+
+    CSELECT --> CARTIFACT["Best Model Artifact<br/>depression_model_v2/"]
+    BSELECT --> BARTIFACT["Best Model Artifact<br/>depression_bert_model_v2/"]
+
+    CARTIFACT --> CCONFIG["training_config.json<br/>(classical fields: vectorizer_params, model_params)"]
+    BARTIFACT --> BCONFIG["training_config.json<br/>(BERT fields: training_args, early_stopping_patience)"]
+
+    TEST["FROZEN TEST SET — NOT part of training pipeline<br/>results/splits/depression_test.csv<br/>1148 rows<br/>no fitting, no model selection"]
+
+    style TEST fill:#f8d7da,stroke:#842029,stroke-width:2px
+    style TRAIN fill:#d1e7dd,stroke:#0f5132,stroke-width:1px
+    style VAL fill:#fff3cd,stroke:#664d03,stroke-width:1px

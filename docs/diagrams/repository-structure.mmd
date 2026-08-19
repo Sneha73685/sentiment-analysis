@@ -1,0 +1,32 @@
+flowchart LR
+    DATADIR["data/<br/>raw datasets"]
+    SRCDIR["src/<br/>preprocessing, training, inference"]
+    EXPDIR["experiments/<br/>v2 evaluation scripts"]
+    RESULTSDIR["results/<br/>persisted outputs"]
+    DOCSDIR["docs/<br/>technical documentation"]
+
+    DEPV1DIR["depression_model.pkl<br/>depression_bert_model/<br/>(legacy artifacts)"]
+    DEPV2DIR["depression_model_v2/<br/>depression_bert_model_v2/<br/>(canonical artifacts)"]
+    SENTDIR["sentiment_model.pkl<br/>sentiment_bert_model/<br/>(legacy, unchanged)"]
+
+    DATADIR -->|"read by legacy train_*.py"| DEPV1DIR
+    DATADIR -->|"read by legacy train_sentiment*.py"| SENTDIR
+    DATADIR -->|"read by src/depression_split.py"| RESULTSDIR
+
+    SRCDIR -->|"src/depression_split.py writes"| RESULTSDIR
+    SRCDIR -->|"train_depression_v2.py, train_depression_bert_v2.py write"| DEPV2DIR
+    SRCDIR -->|"predict.py, predict_depression_bert.py,<br/>mental_health_pipeline.py load (via src/model_config.py)"| DEPV2DIR
+    SRCDIR -->|"predict_bert.py, mental_health_pipeline.py load"| SENTDIR
+
+    EXPDIR -->|"reads results/splits/, depression_model_v2/,<br/>depression_bert_model_v2/"| DEPV2DIR
+    EXPDIR -->|"writes evaluation/calibration/<br/>error-analysis/multiseed outputs"| RESULTSDIR
+
+    DOCSDIR -->|"documents and links into"| RESULTSDIR
+    DOCSDIR -->|"documents"| SRCDIR
+    DOCSDIR -->|"documents"| EXPDIR
+    DOCSDIR -->|"documents"| DEPV1DIR
+    DOCSDIR -->|"documents"| DEPV2DIR
+
+    style DEPV1DIR fill:#f8d7da,stroke:#842029,stroke-width:1px
+    style DEPV2DIR fill:#d1e7dd,stroke:#0f5132,stroke-width:1px
+    style RESULTSDIR fill:#fff3cd,stroke:#664d03,stroke-width:1px

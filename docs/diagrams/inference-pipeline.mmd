@@ -1,0 +1,18 @@
+flowchart TD
+    USER["USER TEXT"]
+
+    subgraph RUNTIME["CURRENT RUNTIME — SENTIMENT V1, DEPRESSION V2"]
+        USER --> SIGNALS["SIGNAL DETECTION<br/>mental_health_signals.detect_signals()<br/>(runs first, before either model)"]
+        SIGNALS --> SENTMODEL["SENTIMENT MODEL<br/>sentiment_bert_model/  (v1)"]
+        SENTMODEL --> DEPMODEL["DEPRESSION MODEL<br/>depression_bert_model_v2/  (v2, via src/model_config.py)"]
+        DEPMODEL --> RISK["compute_risk(sentiment, depression)<br/>UNVALIDATED HEURISTIC<br/>(runs after both labels exist)"]
+        RISK --> RESULT["ANALYSIS RESULT<br/>{text, sentiment, mental_health, risk_level, signals_detected}"]
+    end
+
+    RESULT --> TRAJ["trajectory analysis<br/>mental_health_trajectory.py<br/>(calls analyze_text -- inherits sentiment v1 + depression v2)"]
+    RESULT --> MC["Monte Carlo sensitivity<br/>monte_carlo_simulation.py<br/>(calls analyze_text -- inherits sentiment v1 + depression v2)"]
+
+    style RUNTIME fill:#fff3cd,stroke:#664d03,stroke-width:2px
+    style DEPMODEL fill:#d1e7dd,stroke:#0f5132,stroke-width:1px
+    style SENTMODEL fill:#f8d7da,stroke:#842029,stroke-width:1px
+    style RISK fill:#fff3cd,stroke:#664d03,stroke-width:2px

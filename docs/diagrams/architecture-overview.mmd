@@ -1,0 +1,38 @@
+flowchart TD
+    DATA["DATA<br/>data/"]
+
+    DATA --> SENTDATA["Sentiment datasets<br/>sentiment140.csv, amazon/imdb/yelp_labelled.txt"]
+    DATA --> DEPDATA["Depression dataset<br/>depression_dataset.csv"]
+
+    SENTDATA --> SENTV1["legacy/v1 sentiment models<br/>sentiment_model.pkl, sentiment_bert_model/"]
+
+    DEPDATA --> DEPV1["legacy/v1 depression models<br/>depression_model.pkl, depression_bert_model/"]
+    DEPDATA --> SPLIT["canonical split<br/>src/depression_split.py<br/>seed 42, dedup 81 rows"]
+
+    SPLIT --> V2C["canonical v2 classical<br/>depression_model_v2/"]
+    SPLIT --> V2B["canonical v2 BERT<br/>depression_bert_model_v2/"]
+
+    V2C --> EVALTRACK["evaluation / calibration /<br/>error analysis / multi-seed<br/>experiments/*_v2.py -> results/"]
+    V2B --> EVALTRACK
+
+    subgraph RUNTIME["CURRENT RUNTIME (sentiment v1, depression v2)"]
+        USERTEXT["user text"] --> PIPELINE["mental_health_pipeline.analyze_text()"]
+        PIPELINE --> SENTV1
+        PIPELINE --> V2B
+        PIPELINE --> SIGNALS["mental_health_signals.detect_signals()"]
+        PIPELINE --> RISK["compute_risk()<br/>(unvalidated heuristic)"]
+        RISK --> RESULT["analysis result"]
+        RESULT --> TRAJ["trajectory analysis"]
+        RESULT --> MC["Monte Carlo sensitivity"]
+    end
+
+    subgraph RESEARCH["CANONICAL RESEARCH TRACK (v2 models)"]
+        EVALTRACK
+    end
+
+    style RUNTIME fill:#f8d7da,stroke:#842029,stroke-width:2px
+    style RESEARCH fill:#d1e7dd,stroke:#0f5132,stroke-width:2px
+    style DEPV1 fill:#f8d7da,stroke:#842029,stroke-width:1px
+    style SENTV1 fill:#f8d7da,stroke:#842029,stroke-width:1px
+    style V2C fill:#d1e7dd,stroke:#0f5132,stroke-width:1px
+    style V2B fill:#d1e7dd,stroke:#0f5132,stroke-width:1px

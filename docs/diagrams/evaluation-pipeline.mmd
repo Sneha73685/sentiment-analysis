@@ -1,0 +1,36 @@
+flowchart TD
+    CANON["Canonical Data<br/>results/splits/"]
+    CANON --> TEST["FROZEN TEST SET<br/>results/splits/depression_test.csv<br/>n = 1148<br/>no fitting, no model selection"]
+    CANON --> VAL["Validation Split<br/>results/splits/depression_val.csv<br/>n = 1148"]
+
+    TEST --> INFER["Model Inference<br/>classical: TF-IDF + LogisticRegression.predict_proba<br/>BERT: forward pass, no gradient"]
+
+    subgraph PRIMARY["PRIMARY TEST EVALUATION"]
+        INFER --> METRICS["Classification metrics<br/>accuracy / precision / recall / F1 / ROC-AUC<br/>confusion matrix"]
+        INFER --> PROBS["Predicted probabilities"]
+    end
+
+    VAL -->|"temperature fit on validation logits only"| TEMPFIT["Temperature Fit<br/>T = 1.8148 (BERT only)"]
+    PROBS -->|"frozen temperature applied"| APPLY["Apply Temperature<br/>to frozen test logits"]
+    TEMPFIT --> APPLY
+    APPLY --> CALIB["Calibration Metrics<br/>ECE / Brier / log-loss<br/>pre- and post-scaling"]
+
+    subgraph POSTHOC["POST-HOC ANALYSIS (test predictions read-only)"]
+        METRICS --> CM["Confusion Matrix"]
+        METRICS --> PERCLASS["Per-class metrics"]
+        METRICS --> ERR["Error Analysis<br/>false positive/negative categorization<br/>linguistic-pattern testing"]
+        PROBS --> CONF["Confidence Analysis<br/>confidence on correct vs. incorrect"]
+        CALIB --> CONF
+    end
+
+    subgraph MSEED["MULTI-SEED COMPARISON (separate training runs)"]
+        TRAINRUNS["5 independent retrainings<br/>seeds: 42, 123, 2024, 3407, 7777<br/>each: train-fit, val-select, own temperature fit"]
+        TRAINRUNS --> MTEST["Each seed's model evaluated once<br/>on the SAME frozen test set"]
+        MTEST --> MCOMPARE["Cross-seed mean / SD<br/>seeds never chosen using test results"]
+    end
+
+    METRICS -.->|"same frozen test set reused, not re-selected"| MTEST
+
+    style TEST fill:#f8d7da,stroke:#842029,stroke-width:2px
+    style VAL fill:#fff3cd,stroke:#664d03,stroke-width:1px
+    style TEMPFIT fill:#fff3cd,stroke:#664d03,stroke-width:1px

@@ -1,0 +1,43 @@
+flowchart TD
+    subgraph PREP["DATA PREPARATION"]
+        RAW["Raw dataset<br/>data/depression_dataset.csv<br/>7731 rows"]
+        DEDUP["Duplicate removal<br/>exact match on clean_text<br/>81 rows removed"]
+        CLEAN["Canonical deduplicated dataset<br/>7650 unique rows"]
+        SPLIT["Stratified train / validation / test split<br/>seed = 42, verified zero overlap"]
+        RAW --> DEDUP --> CLEAN --> SPLIT
+    end
+
+    SPLIT --> TRAIN["Train split<br/>5354 rows"]
+    SPLIT --> VAL["Validation split<br/>1148 rows"]
+    SPLIT --> TEST["FROZEN TEST SET — no fitting / no model selection<br/>1148 rows"]
+
+    subgraph TRAINING["TRAINING"]
+        TRAIN --> FIT["Model fitting<br/>classical: TF-IDF + LogisticRegression<br/>BERT: fine-tune distilbert-base-uncased"]
+    end
+
+    subgraph VALIDATION["VALIDATION"]
+        FIT --> SELECT["Model selection / early stopping<br/>classical: diagnostic reporting only<br/>BERT: best-checkpoint selection on accuracy"]
+        VAL --> SELECT
+    end
+
+    SELECT --> TRAINED["Trained, selected model<br/>depression_model_v2/, depression_bert_model_v2/"]
+
+    subgraph FROZEN["FROZEN TEST — SINGLE-USE FINAL EVALUATION"]
+        TRAINED --> EVAL["Official held-out evaluation<br/>metrics computed exactly once"]
+        TEST --> EVAL
+    end
+
+    subgraph POSTHOC["POST-HOC ANALYSIS (test set touched read-only, for reporting only)"]
+        VAL -.->|"temperature parameter fit on validation logits only"| TEMPFIT["Temperature scaling fit"]
+        TEMPFIT -->|"frozen temperature applied to test logits"| CALIB["Calibration evaluation<br/>ECE / Brier / log-loss, pre- and post-scaling"]
+        EVAL --> CALIB
+        EVAL --> ERR["Error analysis<br/>false positive/negative categorization,<br/>confidence stats, linguistic-pattern testing"]
+        TRAIN -.->|"retrained per seed, val used again for selection"| MSEED["Multi-seed stability<br/>seeds: 42, 123, 2024, 3407, 7777<br/>each seed's own frozen-test measurement"]
+        VAL -.->|"model selection per seed"| MSEED
+    end
+
+    style TEST fill:#f8d7da,stroke:#842029,stroke-width:2px
+    style EVAL fill:#f8d7da,stroke:#842029,stroke-width:2px
+    style CALIB fill:#fff3cd,stroke:#664d03,stroke-width:1px
+    style ERR fill:#fff3cd,stroke:#664d03,stroke-width:1px
+    style MSEED fill:#fff3cd,stroke:#664d03,stroke-width:1px
