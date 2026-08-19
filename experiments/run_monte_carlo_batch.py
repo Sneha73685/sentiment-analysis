@@ -1,15 +1,21 @@
+import os
+
 import pandas as pd
-from src.monte_carlo_simulation import run_monte_carlo
+from src.monte_carlo_simulation import run_simulation
+
+RANDOM_SEED = 42
+
+os.makedirs("results", exist_ok=True)
 
 df = pd.read_csv("data/depression_dataset.csv")
 
-texts = df["clean_text"].sample(200)
+texts = df["clean_text"].sample(n=200, random_state=RANDOM_SEED)
 
 results = []
 
 for text in texts:
 
-    mc = run_monte_carlo(text)
+    mc = run_simulation(text, seed=RANDOM_SEED)
 
     results.append({
         "text": text,

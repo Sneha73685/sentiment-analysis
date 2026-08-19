@@ -1,3 +1,5 @@
+import re
+
 SIGNAL_PATTERNS = {
 
     "hopelessness": [
@@ -27,16 +29,22 @@ SIGNAL_PATTERNS = {
 }
 
 
+_COMPILED_PATTERNS = {
+    signal: [re.compile(r"\b" + re.escape(phrase) + r"\b") for phrase in phrases]
+    for signal, phrases in SIGNAL_PATTERNS.items()
+}
+
+
 def detect_signals(text):
 
     text = text.lower()
     detected = []
 
-    for signal, phrases in SIGNAL_PATTERNS.items():
+    for signal, patterns in _COMPILED_PATTERNS.items():
 
-        for phrase in phrases:
+        for pattern in patterns:
 
-            if phrase in text:
+            if pattern.search(text):
                 detected.append(signal)
                 break
 

@@ -11,15 +11,18 @@ INTENSIFIERS = [
     "somewhat"
 ]
 
-def generate_variation(sentence):
+DEFAULT_SEED = 42
+
+
+def generate_variation(sentence, rng):
 
     words = sentence.split()
 
     if len(words) < 3:
         return sentence
 
-    idx = random.randint(0, len(words)-1)
-    words.insert(idx, random.choice(INTENSIFIERS))
+    idx = rng.randint(0, len(words)-1)
+    words.insert(idx, rng.choice(INTENSIFIERS))
 
     return " ".join(words)
 
@@ -34,13 +37,14 @@ def risk_to_score(risk):
         return 3
 
 
-def run_simulation(text, n=100):
+def run_simulation(text, n=100, seed=DEFAULT_SEED):
 
+    rng = random.Random(seed)
     scores = []
 
     for _ in range(n):
 
-        variation = generate_variation(text)
+        variation = generate_variation(text, rng)
 
         result = analyze_text(variation)
 
@@ -54,6 +58,7 @@ def run_simulation(text, n=100):
     return {
         "original_text": text,
         "runs": n,
+        "seed": seed,
         "mean_risk_score": mean_score,
         "risk_variance": std_score,
         "all_scores": scores
