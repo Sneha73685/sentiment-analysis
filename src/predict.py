@@ -1,5 +1,9 @@
 import joblib
 from src.preprocess import clean_text
+from src.model_config import (
+    DEPRESSION_CLASSICAL_MODEL_PATH,
+    DEPRESSION_CLASSICAL_VECTORIZER_PATH,
+)
 
 sentiment_model = None
 sentiment_vectorizer = None
@@ -14,8 +18,8 @@ def _load_models():
         return
     sentiment_model = joblib.load("sentiment_model.pkl")
     sentiment_vectorizer = joblib.load("tfidf_vectorizer.pkl")
-    depression_model = joblib.load("depression_model.pkl")
-    depression_vectorizer = joblib.load("depression_vectorizer.pkl")
+    depression_model = joblib.load(DEPRESSION_CLASSICAL_MODEL_PATH)
+    depression_vectorizer = joblib.load(DEPRESSION_CLASSICAL_VECTORIZER_PATH)
 
 
 def predict_all(text):

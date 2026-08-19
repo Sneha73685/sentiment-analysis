@@ -2,9 +2,11 @@ import torch
 import torch.nn.functional as F
 from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
 
+from src.model_config import DEPRESSION_BERT_MODEL_PATH
+
 device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
-model_path = "depression_bert_model"
+model_path = DEPRESSION_BERT_MODEL_PATH
 
 tokenizer = DistilBertTokenizerFast.from_pretrained(model_path)
 model = DistilBertForSequenceClassification.from_pretrained(model_path).to(device)

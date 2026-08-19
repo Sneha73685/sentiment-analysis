@@ -1,13 +1,13 @@
 import torch
 import torch.nn.functional as F
 from src.mental_health_signals import detect_signals
+from src.model_config import DEPRESSION_BERT_MODEL_PATH
 from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
-from src.text_preprocessing import correct_text
 
 device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
 sentiment_model_path = "sentiment_bert_model"
-depression_model_path = "depression_bert_model"
+depression_model_path = DEPRESSION_BERT_MODEL_PATH
 
 sent_tokenizer = DistilBertTokenizerFast.from_pretrained(sentiment_model_path)
 sent_model = DistilBertForSequenceClassification.from_pretrained(sentiment_model_path).to(device)
@@ -29,7 +29,7 @@ def compute_risk(sentiment, depression):
     return "low"
 
 def analyze_text(text):
-    text = correct_text(text)
+    # Spell correction intentionally removed: models were trained on raw text.
     signals = detect_signals(text)
     # SENTIMENT
     inputs_sent = sent_tokenizer(
