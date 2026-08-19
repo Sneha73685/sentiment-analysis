@@ -4,21 +4,41 @@ __pycache__/
 *.pyo
 *.pyd
 
+# pytest cache (tests/ suite added in Phase D)
+.pytest_cache/
+
 # Virtual environment
 venv/
 env/
 *.venv
 
-# Large model folders
+# Large model folders (v1)
 depression_bert/
 sentiment_bert/
 depression_bert_model/
 sentiment_bert_model/
 
-# HuggingFace / torch weights
+# Large model folders (v2 / canonical BERT depression models)
+# NOTE: depression_model_v2/ (classical TF-IDF+LogisticRegression) is
+# intentionally NOT listed here. It only contains small .pkl files plus a
+# training_config.json (~224KB total) -- there is no large-binary risk, and
+# it is a canonical reproducibility artifact. See the Phase 1 git safety
+# report for the full reasoning.
+depression_bert_v2/
+depression_bert_model_v2/
+
+# HuggingFace / torch / safetensors weights, wherever they appear
 *.bin
 *.pt
 *.pth
+*.safetensors
+
+# Disposable multi-seed experiment checkpoints. Explicitly documented as
+# disposable in results/multiseed/MULTISEED_REPORT.md -- safe to delete,
+# and nothing else in the repo depends on these weights still being present
+# (all multi-seed metrics are already persisted as CSV/JSON/PNG outputs
+# alongside this directory, which remain trackable).
+results/multiseed/tmp_models/
 
 # Large datasets
 data/
