@@ -1,0 +1,33 @@
+{
+  "source_file": "data/depression_dataset.csv",
+  "random_seed": 42,
+  "raw_row_count": 7731,
+  "duplicates_removed": 81,
+  "deduped_row_count": 7650,
+  "split_fractions": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "split_counts": {
+    "train": 5354,
+    "val": 1148,
+    "test": 1148
+  },
+  "class_balance": {
+    "train": {
+      "0": 2721,
+      "1": 2633
+    },
+    "val": {
+      "0": 584,
+      "1": 564
+    },
+    "test": {
+      "0": 584,
+      "1": 564
+    }
+  },
+  "no_overlap_verified": true,
+  "notes": "This split governs all FUTURE training/evaluation of the depression models. depression_model.pkl and depression_bert_model/ were trained BEFORE this split existed and were not constrained to exclude these test rows. Metrics computed against those already-trained models are NOT a valid final generalization estimate -- they only verify that the evaluation pipeline itself is correct. Valid final numbers require retraining both models using depression_train.csv / depression_val.csv only, in a future phase."
+}
