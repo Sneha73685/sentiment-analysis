@@ -158,11 +158,12 @@ each file's model-path assignment, not inferred.
 ## 8. Inference Diagram
 
 See [`docs/diagrams/inference-pipeline.mmd`](diagrams/inference-pipeline.mmd).
-**This diagram predates the runtime migration described in Section 7 and
-still depicts the depression model as v1/"not wired in"; it has not been
-redrawn as part of this migration and is a known, pending documentation
-follow-up.** The prose in Section 7 above is the current source of truth
-for runtime model loading.
+**This diagram reflects the current runtime architecture described in
+Section 7: sentiment remains v1, depression now uses the canonical v2
+model, and the depression paths are centralized through
+`src/model_config.py`. Trajectory analysis and the Monte Carlo experiment
+inherit this same combined runtime behavior.** The prose in Section 7
+above is the current source of truth for runtime model loading.
 
 ## 9. Research / Evaluation Architecture
 

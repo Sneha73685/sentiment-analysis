@@ -81,6 +81,7 @@ evaluate==0.4.6
 accelerate==0.34.2
 pandas==2.3.3
 scikit-learn==1.7.2
+scipy==1.15.3
 nltk==3.9.2
 joblib==1.5.3
 numpy==2.2.6
