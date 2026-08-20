@@ -325,6 +325,8 @@ python -m pytest tests/ -q
 (`pytest` is a test-only dependency in `requirements.txt` — it is not required by any
 `src/` or `experiments/` runtime code.)
 
+Current result: 36 passed, 2 skipped.
+
 **What it covers:**
 
 - `tests/test_preprocess.py` — determinism and current normalization behavior of
@@ -346,6 +348,12 @@ python -m pytest tests/ -q
   helpers are not unit tested: `src/monte_carlo_simulation.py` transitively imports
   `src/mental_health_pipeline.py`, which loads two BERT models (sentiment v1, depression v2) at
   module import time: this is documented in the test file rather than worked around.
+- `tests/test_trajectory.py` — a single, explicit `pytest.skip` documenting the same
+  model-loading-at-import coupling as `tests/test_monte_carlo.py` above:
+  `src/mental_health_trajectory.py` also transitively imports `src/mental_health_pipeline.py`,
+  so importing it for any reason loads both BERT models first. `risk_to_score` and
+  `detect_trend` would otherwise be easy to unit test in isolation, but doing so is out of
+  scope for this phase per the same "no BERT in pytest" constraint.
 - `tests/test_model_config.py` — added as part of the Phase E runtime migration; protects the
   runtime **depression** model-path selection without loading any model weights. It asserts the
   `src/model_config.py` path constants resolve to the v2 artifacts and exist on disk, that
@@ -353,7 +361,12 @@ python -m pytest tests/ -q
   lazily, not at import time), and — via **static source-text inspection, not import** — that
   `src/predict_depression_bert.py` and `src/mental_health_pipeline.py` reference the centralized
   v2 constant and no longer contain the old hard-coded v1 path string. The latter two modules
-  are never imported in this test suite, since importing either loads BERT.
+  are never imported in this test suite, since importing either loads BERT. It also covers, via
+  the same live-import/static-source-text approach: that `src/predict.py`'s sentiment loading
+  stays on its hard-coded v1 literals, that `src/predict.py`'s models remain unloaded until the
+  first call to `predict_all()` (lazy-loading is never broken by an eager import), and that the
+  return schemas of `src/predict.py`'s `predict_all()`, `src/predict_depression_bert.py`'s
+  `predict()`, and `src/mental_health_pipeline.py`'s `analyze_text()` are not silently changed.
 
 **What it does not cover** (deliberately, per this phase's scope): BERT model loading or
 inference, the full combined pipeline (`mental_health_pipeline.analyze_text`), trajectory

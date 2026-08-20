@@ -303,7 +303,7 @@ multi-hundred-MB model weights themselves to be stored in git.
   does not invoke `src/depression_split.py` or any `experiments/*_v2.py`
   script.
 - A minimal automated test suite exists (`tests/`, added in Phase D) and currently passes
-  (31 passed, 1 skipped) — see [`development.md`](development.md) §15 for coverage scope.
+  (36 passed, 2 skipped) — see [`development.md`](development.md) §15 for coverage scope.
 - No CI exists yet.
 - `app.py` is empty.
 - `experiments/plot_confusion_matrix.py` and `experiments/plot_monte_carlo.py`
