@@ -355,20 +355,24 @@ re-evaluate these models.
 
 ## 16. Known Engineering Limitations
 
-- No unified model loader — each prediction/pipeline script independently
-  hard-codes its model path (Section 14).
+- Depression model paths are now centralized (`src/model_config.py`, Section 13); sentiment
+  paths remain independently hard-coded in each script, since sentiment has no v2 track to
+  centralize toward (Section 14).
 - BERT tokenizer/model loading boilerplate is duplicated near-identically
   across `src/predict_bert.py`, `src/predict_depression_bert.py`, and
   `src/mental_health_pipeline.py`.
 - No type hints anywhere in the model-loading or training code.
-- No automated tests exist yet for training or inference code paths.
+- A minimal automated test suite exists (`tests/`) covering preprocessing, signal detection,
+  split reproducibility, metric computation, and the depression model-path configuration — it
+  does not cover training or inference execution paths.
 - Training configuration is partly defined directly in each script (e.g.
   `TfidfVectorizer(max_features=5000)` is a literal in
   `src/train_depression_v2.py`, not read from an external config file) —
   the `training_config.json` files record what was used after the fact,
   they do not drive the training run.
-- V1 and V2 artifact coexistence (Section 2, Section 13) creates ongoing
-  maintenance risk until the runtime loading gap is resolved.
+- V1 and V2 artifact coexistence (Section 2, Section 13) creates ongoing maintenance risk for
+  the still-unmigrated sentiment path; the depression runtime-loading gap has been resolved via
+  `src/model_config.py`.
 
 ## 17. References to Repository Evidence
 
